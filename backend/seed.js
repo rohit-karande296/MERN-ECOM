@@ -1,3 +1,5 @@
+const dns = require('dns');
+dns.setServers(['8.8.8.8', '8.8.4.4']);
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const bcrypt = require('bcryptjs');
@@ -7,10 +9,12 @@ const connectDB = require('./config/db');
 
 dotenv.config();
 
-connectDB();
+
 
 const importData = async () => {
   try {
+    connectDB();
+    
     await User.deleteMany();
     await Product.deleteMany();
 
